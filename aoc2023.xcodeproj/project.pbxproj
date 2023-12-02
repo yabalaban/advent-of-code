@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E2C27EE62B1AF07300C22D52 /* day2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C27EE52B1AF07300C22D52 /* day2.swift */; };
+		E2C27EE82B1AF0EE00C22D52 /* day2.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = E2C27EE72B1AF0D700C22D52 /* day2.txt */; };
 		E2CA12BD2B19A2A9008A79E5 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA12BC2B19A2A9008A79E5 /* main.swift */; };
 		E2CA12C72B19A2FD008A79E5 /* day1.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA12C62B19A2FD008A79E5 /* day1.swift */; };
 		E2CA12C82B19A526008A79E5 /* day1.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = E2CA12C42B19A2CE008A79E5 /* day1.txt */; };
@@ -19,6 +21,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				E2C27EE82B1AF0EE00C22D52 /* day2.txt in CopyFiles */,
 				E2CA12C82B19A526008A79E5 /* day1.txt in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -26,6 +29,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E2C27EE52B1AF07300C22D52 /* day2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = day2.swift; sourceTree = "<group>"; };
+		E2C27EE72B1AF0D700C22D52 /* day2.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day2.txt; sourceTree = "<group>"; };
 		E2CA12B92B19A2A9008A79E5 /* aoc2023 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = aoc2023; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2CA12BC2B19A2A9008A79E5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		E2CA12C42B19A2CE008A79E5 /* day1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = day1.txt; sourceTree = "<group>"; };
@@ -43,6 +48,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E2C27EE42B1AF06700C22D52 /* day2 */ = {
+			isa = PBXGroup;
+			children = (
+				E2C27EE52B1AF07300C22D52 /* day2.swift */,
+				E2C27EE72B1AF0D700C22D52 /* day2.txt */,
+			);
+			path = day2;
+			sourceTree = "<group>";
+		};
 		E2CA12B02B19A2A8008A79E5 = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +76,7 @@
 		E2CA12BB2B19A2A9008A79E5 /* aoc2023 */ = {
 			isa = PBXGroup;
 			children = (
+				E2C27EE42B1AF06700C22D52 /* day2 */,
 				E2CA12C52B19A2DC008A79E5 /* day1 */,
 				E2CA12BC2B19A2A9008A79E5 /* main.swift */,
 			);
@@ -136,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2CA12C72B19A2FD008A79E5 /* day1.swift in Sources */,
+				E2C27EE62B1AF07300C22D52 /* day2.swift in Sources */,
 				E2CA12BD2B19A2A9008A79E5 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
