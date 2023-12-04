@@ -13,3 +13,11 @@ print("Day 2:")
 print("\t(a) \(try await problem_2a())")
 print("\t(b) \(try await problem_2b())")
 
+print("Day 3:")
+print("\t(a) \(try await problem_3a())")
+print("\t(b) \(try await problem_3b())")
+
+print("Day 4:")
+print("\t(a) \(try await problem_4a())")
+print("\t(b) \(try await problem_4b())")
+
