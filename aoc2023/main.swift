@@ -24,3 +24,7 @@ print("\t(b) \(try await problem_4b())")
 print("Day 5:")
 print("\t(a) \(try await problem_5a())")
 print("\t(b) \(try await problem_5b())")
+
+print("Day 6:")
+print("\t(a) \(try await problem_6a())")
+print("\t(b) \(try await problem_6b())")
