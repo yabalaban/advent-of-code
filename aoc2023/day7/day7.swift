@@ -45,7 +45,7 @@ struct Hand: Comparable {
         case 1:
             self.t = .five
         case 2:
-            if Set(c.values).intersection(Set([2, 3])).count == 2 {
+            if Set(c.values) == Set([2, 3]) {
                 self.t = .fullHouse
             } else {
                 self.t = .four
@@ -138,14 +138,14 @@ struct JHand: Comparable {
         case 2:
             if c["J"] != nil {
                 self.t = .five
-            } else if Set(c.values).intersection(Set([2, 3])).count == 2 {
+            } else if Set(c.values) == Set([2, 3]) {
                 self.t = .fullHouse
             } else {
                 self.t = .four
             }
         case 3:
             if c["J"] != nil {
-                if c["J"] == 1 && Set(c.values).intersection(Set([2])).count == 1 {
+                if c["J"] == 1 && Set(c.values) == Set([2]) {
                     self.t = .fullHouse
                 } else {
                     self.t = .four
@@ -238,7 +238,6 @@ KTJJT 220
 QQQJA 483
 """) == 5905)
     }()
-    
     
     let input = try String(contentsOfFile: url.path(), encoding: .utf8)
     return camelCaseJokersRound(input)
