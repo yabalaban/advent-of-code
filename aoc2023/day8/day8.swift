@@ -59,8 +59,8 @@ func countHopsGhosts(_ config: String) -> Int {
         map[head] = (child[0], child[1])
     }
     
-    var nodes = map.keys.filter({ $0.hasSuffix("A") })
-    var counts = nodes.map({
+    let nodes = map.keys.filter({ $0.hasSuffix("A") })
+    let counts = nodes.map({
         var count = 0
         var node = $0
         while !node.hasSuffix("Z") {
