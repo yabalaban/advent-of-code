@@ -1,10 +1,3 @@
-//
-//  day7.swift
-//  aoc2023
-//
-
-import Foundation
-
 let labels: [String: Int] = [
     "A": 13,
     "K": 12,
@@ -207,10 +200,8 @@ func camelCaseJokersRound(_ input: String) -> Int {
     }
 }
 
-func problem_7a() async throws -> Int {
-    guard let url = Bundle.main.url(forResource: "day7", withExtension: "txt") else {
-        fatalError()
-    }
+
+func camelCasePoker(_ input: String) -> Int {
     { // assertions
         assert(camelCaseRound("""
 32T3K 765
@@ -221,14 +212,10 @@ QQQJA 483
 """) == 6440)
     }()
 
-    let input = try String(contentsOfFile: url.path(), encoding: .utf8)
     return camelCaseRound(input)
 }
 
-func problem_7b() async throws -> Int {
-    guard let url = Bundle.main.url(forResource: "day7", withExtension: "txt") else {
-        fatalError()
-    }
+func camelCaseJokersPoker(_ input: String) -> Int {
     { // assertions
         assert(camelCaseJokersRound("""
 32T3K 765
@@ -239,7 +226,5 @@ QQQJA 483
 """) == 5905)
     }()
     
-    let input = try String(contentsOfFile: url.path(), encoding: .utf8)
     return camelCaseJokersRound(input)
 }
-

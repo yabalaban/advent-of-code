@@ -1,11 +1,4 @@
-//
-//  day11.swift
-//  aoc2023
-//
-
-import Foundation
-
-private func totalDistance(_ galaxy: String, coef: Int = 2) -> Int {
+private func solution(_ galaxy: String, coef: Int = 2) -> Int {
     let coord = galaxy
         .split(separator: "\n").enumerated()
         .map({ ($0, $1.enumerated().filter({ $1 == "#" })) })
@@ -38,13 +31,9 @@ private func totalDistance(_ galaxy: String, coef: Int = 2) -> Int {
     return sum
 }
 
-func problem_11a() async throws -> Int {
-    guard let url = Bundle.main.url(forResource: "day11", withExtension: "txt") else {
-        fatalError()
-    }
-    
+func totalDistance(_ input: String) -> Int {
     { // assertions
-        assert(totalDistance("""
+        assert(solution("""
 ...#......
 .......#..
 #.........
@@ -57,18 +46,13 @@ func problem_11a() async throws -> Int {
 #...#.....
 """) == 374);
     }()
-    
-    let input = try String(contentsOfFile: url.path(), encoding: .utf8)
-    return totalDistance(input)
+    return solution(input)
 }
 
-func problem_11b() async throws -> Int {
-    guard let url = Bundle.main.url(forResource: "day11", withExtension: "txt") else {
-        fatalError()
-    }
-    
+
+func totalDistanceCoef(_ input: String) -> Int {
     { // assertions
-        assert(totalDistance("""
+        assert(solution("""
 ...#......
 .......#..
 #.........
@@ -80,7 +64,7 @@ func problem_11b() async throws -> Int {
 .......#..
 #...#.....
 """, coef: 10) == 1030);
-        assert(totalDistance("""
+        assert(solution("""
 ...#......
 .......#..
 #.........
@@ -94,6 +78,5 @@ func problem_11b() async throws -> Int {
 """, coef: 100) == 8410);
     }()
     
-    let input = try String(contentsOfFile: url.path(), encoding: .utf8)
-    return totalDistance(input, coef: 1000000)
+    return solution(input, coef: 1000000)
 }

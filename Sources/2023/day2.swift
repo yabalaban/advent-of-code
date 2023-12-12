@@ -1,10 +1,3 @@
-//
-//  day2.swift
-//  aoc2023
-//
-
-import Foundation
-
 class Game {
     struct Configuration {
         var red: Int
@@ -64,11 +57,7 @@ class Game {
     }
 }
 
-func problem_2a() async throws -> Int {
-    guard let url = Bundle.main.url(forResource: "day2", withExtension: "txt") else {
-        fatalError()
-    }
-    
+func countPossibleGames(_ input: String) -> Int {
     let game = Game(config: Game.Configuration(red: 12, green: 13, blue: 14))
     _ = { // assertions
         assert(game.isPossible("Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green") == 1)
@@ -77,14 +66,13 @@ func problem_2a() async throws -> Int {
         assert(game.isPossible("Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red") == nil)
         assert(game.isPossible("Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green") == 5)
     }()
-    return try await url.lines.compactMap({ game.isPossible($0) }).reduce(0, +)
+    return input.split(separator: "\n")
+        .map(String.init)
+        .compactMap({ game.isPossible($0) })
+        .reduce(0, +)
 }
 
-func problem_2b() async throws -> Int {
-    guard let url = Bundle.main.url(forResource: "day2", withExtension: "txt") else {
-        fatalError()
-    }
-    
+func calculateFitPower(_ input: String) -> Int {
     _ = { // assertions
         assert(Game.getFitConfigurationPower("Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green") == 48)
         assert(Game.getFitConfigurationPower("Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue") == 12)
@@ -92,6 +80,8 @@ func problem_2b() async throws -> Int {
         assert(Game.getFitConfigurationPower("Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red") == 630)
         assert(Game.getFitConfigurationPower("Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green") == 36)
     }()
-    return try await url.lines.compactMap({ Game.getFitConfigurationPower($0) }).reduce(0, +)
+    return input.split(separator: "\n")
+        .map(String.init)
+        .compactMap({ Game.getFitConfigurationPower($0) })
+        .reduce(0, +)
 }
-
