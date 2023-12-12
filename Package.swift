@@ -9,13 +9,13 @@ let package = Package(
         .macOS(.v10_15),
     ],
     dependencies: [
-        .package(url: "../aoc-utils", from: "0.0.9")
+        .package(url: "https://github.com/yabalaban/advent-of-code-swift-utils", branch: "main"),
     ],
     targets: [
         .executableTarget(
             name: "aoc",
             dependencies: [
-            .product(name: "AocUtils", package: "aoc-utils")
+            .product(name: "AocUtils", package: "advent-of-code-swift-utils")
         ]),
     ]
 )
