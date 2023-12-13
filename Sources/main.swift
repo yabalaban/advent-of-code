@@ -52,5 +52,14 @@ var day11 = aoc2023.problem(for: .day11)
 day11.part1 = totalDistance(_:)
 day11.part2 = totalDistanceCoef(_:)
 
+// TODO: solve part2
+//var day12 = aoc2023.problem(for: .day12)
+//day12.part1 = countArrangementsOfSprings(_:)
+//day12.part2 = countUnfoldedArrangementsOfSprings(_:)
+
+var day13 = aoc2023.problem(for: .day13)
+day13.part1 = getMirrorScore(_:)
+day13.part2 = getMirrorScoreWithDelta(_:)
+
 // Prints all available solutions
 try await aoc2023.solve()
