@@ -52,14 +52,21 @@ var day11 = aoc2023.problem(for: .day11)
 day11.part1 = totalDistance(_:)
 day11.part2 = totalDistanceCoef(_:)
 
-// TODO: solve part2
-//var day12 = aoc2023.problem(for: .day12)
-//day12.part1 = countArrangementsOfSprings(_:)
-//day12.part2 = countUnfoldedArrangementsOfSprings(_:)
+var day12 = aoc2023.problem(for: .day12)
+day12.part1 = countArrangementsOfSprings(_:)
+day12.part2 = countUnfoldedArrangementsOfSprings(_:)
 
 var day13 = aoc2023.problem(for: .day13)
 day13.part1 = getMirrorScore(_:)
 day13.part2 = getMirrorScoreWithDelta(_:)
+
+var day14 = aoc2023.problem(for: .day14)
+day14.part1 = totalLoadOnNorth(_:)
+day14.part2 = totalLoadOnNorthWithSpins(_:)
+
+var day15 = aoc2023.problem(for: .day15)
+day15.part1 = lensHasher(_:)
+day15.part2 = lensFocusingPower(_:)
 
 // Prints all available solutions
 try await aoc2023.solve()
