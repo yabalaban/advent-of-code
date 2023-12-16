@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:advent-of-code}",
+            "name": "Debug aoc",
+            "program": "${workspaceFolder:advent-of-code}/.build/debug/aoc",
+            "preLaunchTask": "swift: Build Debug aoc"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:advent-of-code}",
+            "name": "Release aoc",
+            "program": "${workspaceFolder:advent-of-code}/.build/release/aoc",
+            "preLaunchTask": "swift: Build Release aoc"
+        }
+    ]
+}

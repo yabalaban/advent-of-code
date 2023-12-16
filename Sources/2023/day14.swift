@@ -1,4 +1,4 @@
-private class Point2D: Equatable {
+private class Point2D: Equatable, Hashable, CustomStringConvertible {
     static func == (lhs: Point2D, rhs: Point2D) -> Bool {
         return lhs.x == rhs.x && lhs.y == rhs.y
     }
@@ -10,9 +10,80 @@ private class Point2D: Equatable {
         self.x = x
         self.y = y
     }
+    
+    var description: String {
+        "(\(x), \(y))"
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(x)
+        hasher.combine(y)
+    }
 }
 
-func countLoadOnNorth2(_ input: String, _ spins: Int) -> Int {
+func countLoadOnNorth(_ input: String, _ spins: Int) -> Int {
+    func tiltToNorth(_ mirrors: [Point2D], _ beams: [Point2D], _ n: Int) -> [Point2D] {
+        var state = (0..<n).map({ _ in [Point2D(0, 0)] })
+        
+        for beam in beams {
+            state[beam.x].append(Point2D(0, beam.y + 1))
+        }
+        
+        for mirror in mirrors {
+            let cols = state[mirror.x]
+            var slot = cols[0]
+            for beam in cols {
+                if mirror.y >= beam.y {
+                    slot = beam
+                } else {
+                    break
+                }
+            }
+            slot.x += 1
+        }
+        
+        var new: [Point2D] = []
+        for (x, col) in state.enumerated() {
+            col.filter({ $0.x != 0 }).forEach({ (slot) in
+                var total = slot.x
+                var cost = rows.count - max(slot.y, 0)
+                var sum = 0
+                while total > 0 {
+                    sum += cost
+                    new.append(Point2D(x, rows.count - cost))
+                    cost -= 1
+                    total -= 1
+                }
+            })
+        }
+        
+        return new
+    }
+    
+    func rotate(_ mirrors: [Point2D], _ beams: [Point2D], _ len: Int) -> ([Point2D], [Point2D]) {
+        let rmirrors = mirrors.map({ Point2D(len - 1 - $0.y, $0.x) })
+        let rbeams = beams.map({ Point2D(len - 1 - $0.y, $0.x) })
+        return (rmirrors, rbeams)
+    }
+    
+    func load(_ mirrors: [Point2D], _ beams: [Point2D]) -> Int {
+        var c = 0
+        for x in 0..<rows[0].count {
+            var loading = true
+            for y in 0..<rows.count {
+                if loading && mirrors.contains(where: { $0 == Point2D(x, y) }) {
+                    c += rows.count - y
+                } else {
+                    loading = true
+                }
+                if beams.contains(where: { $0 == Point2D(x, y) }) {
+                    loading = true
+                }
+            }
+        }
+        return c
+    }
+    
     let rows = input.components(separatedBy: "\n").filter({ !$0.isEmpty })
     var mirrors: [Point2D] = []
     var beams: [Point2D] = []
@@ -28,93 +99,54 @@ func countLoadOnNorth2(_ input: String, _ spins: Int) -> Int {
         }
     }
     
-    var state = (0..<rows[0].count).map({ _ in [Point2D(0, -1)] })
-    for beam in beams {
-        if beam.y != 0 {
-            state[beam.x].append(Point2D(0, beam.y))
-        }
-    }
-    
-    for mirror in mirrors {
-        let cols = state[mirror.x]
-        var slot = cols[0]
-        for beam in cols {
-            if mirror.y > beam.y {
-                slot = beam
-            } else {
+    if spins > 0 {
+        var spins = spins
+        while spins > 0 {
+            var rbeams = beams
+            var rmirrors = mirrors
+            rmirrors = tiltToNorth(rmirrors, rbeams, rows[0].count)
+            (rmirrors, rbeams) = rotate(rmirrors, rbeams, rows[0].count)
+            rmirrors.sort(by: { $0.x < $1.x || ($0.x >= $1.x && $0.y < $1.y) })
+            rbeams.sort(by: { $0.x < $1.x || ($0.x >= $1.x && $0.y < $1.y) })
+            
+            rmirrors = tiltToNorth(rmirrors, rbeams, rows.count)
+            (rmirrors, rbeams) = rotate(rmirrors, rbeams, rows.count)
+            rmirrors.sort(by: { $0.x < $1.x || ($0.x >= $1.x && $0.y < $1.y) })
+            rbeams.sort(by: { $0.x < $1.x || ($0.x >= $1.x && $0.y < $1.y) })
+            
+            rmirrors = tiltToNorth(rmirrors, rbeams, rows[0].count)
+            (rmirrors, rbeams) = rotate(rmirrors, rbeams, rows[0].count)
+            rmirrors.sort(by: { $0.x < $1.x || ($0.x >= $1.x && $0.y < $1.y) })
+            rbeams.sort(by: { $0.x < $1.x || ($0.x >= $1.x && $0.y < $1.y) })
+            
+            rmirrors = tiltToNorth(rmirrors, rbeams, rows.count)
+            (rmirrors, rbeams) = rotate(rmirrors, rbeams, rows.count)
+            rmirrors.sort(by: { $0.x < $1.x || ($0.x >= $1.x && $0.y < $1.y) })
+            rbeams.sort(by: { $0.x < $1.x || ($0.x >= $1.x && $0.y < $1.y) })
+       
+            let same = Set(rmirrors) == Set(mirrors)
+            mirrors = rmirrors
+            if same {
                 break
             }
+            
+            // spin converges to repetitive cycle
+            // lets cheat by looking at values and taking
+            // the one from (1000000000 - start) % len
+            let l = load(mirrors, beams)
+            print(l)
+            spins -= 1
         }
-        slot.x += 1
+    } else {
+        mirrors = tiltToNorth(mirrors, beams, rows[0].count)
     }
     
-    var c = 0
-    for col in state {
-        c += col.filter({ $0.x != 0 }).map({ (slot) in
-            var total = slot.x
-            var cost = rows.count - slot.y - 1
-            var sum = 0
-            while total > 0 {
-                sum += cost
-                cost -= 1
-                total -= 1
-            }
-            return sum
-        }).reduce(0, +)
-    }
-    c -= rows[0].count
-    return c
-}
-
-func countLoadOnNorth(_ input: String, _ spins: Int) -> Int {
-    var beams: [Int: [(Int, Int)]] = [:]
-    let rows = input.components(separatedBy: "\n").filter({ !$0.isEmpty })
-    for i in 0..<rows[0].count {
-        beams[i, default: []].append((0, rows.count))
-    }
-    for (y, row) in rows.enumerated() {
-        for (i, ch) in row.enumerated() {
-            if ch == "#" {
-                beams[i, default: []].append((0, rows.count - y - 1))
-            }
-            if ch == "O" {
-                if let stack = beams[i] {
-                    let top: (Int, Int)
-                    if let last = stack.last {
-                        top = (last.0 + 1, last.1)
-                    } else {
-                        top = (1, rows.count - y)
-                    }
-                    beams[i]?[stack.count - 1] = top
-                } else {
-                    fatalError()
-                }
-            }
-        }
-    }
-    var c = 0
-    for beam in beams.values {
-        c += beam.map({ (total, top) in
-            var total = total
-            var cost = top
-            var sum = 0
-            while total > 0 {
-                sum += cost
-                cost -= 1
-                total -= 1
-            }
-            return sum
-        }).reduce(0, +)
-    }
-    return c
+    let l = load(mirrors, beams)
+    return l
 }
 
 func totalLoadOnNorth(_ input: String) -> Int {
-//    assert(countLoadOnNorth2("""
-//OO.
-//..O
-//""", 1) == 6)
-    assert(countLoadOnNorth2("""
+    assert(countLoadOnNorth("""
 O....#....
 O.OO#....#
 .....##...
@@ -125,22 +157,10 @@ O.#..O.#.#
 .......O..
 #....###..
 #OO..#....
-""", 1) == 136)
-    return countLoadOnNorth2(input, 1)
+""", 0) == 136)
+    return countLoadOnNorth(input, 0)
 }
 
 func totalLoadOnNorthWithSpins(_ input: String) -> Int {
-//    assert(countLoadOnNorth("""
-//O....#....
-//O.OO#....#
-//.....##...
-//OO.#O....O
-//.O.....O#.
-//O.#..O.#.#
-//..O..#O..O
-//.......O..
-//#....###..
-//#OO..#....
-//""", 1000000000) == 64)
     return countLoadOnNorth(input, 1000000000)
 }
