@@ -2,6 +2,11 @@ func cubicMeters(_ lines: [String]) -> Int {
     var ranges: [Int: [ClosedRange<Int>]] = [:]
     var start = (0, 0)
     
+    // vertical ranges shouldn't be stored as separate arrays
+    // opt: add points on existing horizontal ranges and keep vertical range map
+    // separately to multiple on at count calculation time
+    // this naive solution takes ~1min with release build
+    
     for line in lines {
         let comp = line.components(separatedBy: " ")
         switch comp[0] {

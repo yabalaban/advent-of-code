@@ -5,7 +5,6 @@ import Foundation
 guard let cookie = ProcessInfo.processInfo.environment["AOC_COOKIE"] else {
     fatalError("AOC_COOKIE env variable has to be specified")
 }
-//let cookie = ""
 
 let aoc2023 = getProblemSet(for: 2023, cookie: cookie)
 
