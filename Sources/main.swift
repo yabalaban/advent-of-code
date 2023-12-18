@@ -60,18 +60,22 @@ let aoc2023 = getProblemSet(for: 2023, cookie: cookie)
 //var day13 = aoc2023.problem(for: .day13)
 //day13.part1 = getMirrorScore(_:)
 //day13.part2 = getMirrorScoreWithDelta(_:)
-
+//
 //var day14 = aoc2023.problem(for: .day14)
 //day14.part1 = totalLoadOnNorth(_:)
 //day14.part2 = totalLoadOnNorthWithSpins(_:)
-
+//
 //var day15 = aoc2023.problem(for: .day15)
 //day15.part1 = lensHasher(_:)
 //day15.part2 = lensFocusingPower(_:)
-
-var day16 = aoc2023.problem(for: .day16)
+//
+//var day16 = aoc2023.problem(for: .day16)
 //day16.part1 = countEnergizedCells(_:)
-day16.part2 = countEnergizedCellsGridSearch(_:)
+//day16.part2 = countEnergizedCellsGridSearch(_:)
+
+var day17 = aoc2023.problem(for: .day17)
+day17.part1 = minHeatLoss(_:)
+day17.part2 = minHeatLossUltra(_:)
 
 // Prints all available solutions
 try await aoc2023.solve()

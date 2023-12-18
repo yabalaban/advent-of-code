@@ -10,12 +10,14 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/yabalaban/advent-of-code-swift-utils", branch: "main"),
+        .package(url: "https://github.com/apple/swift-collections.git", branch: "main"),
     ],
     targets: [
         .executableTarget(
             name: "aoc",
             dependencies: [
-            .product(name: "AocUtils", package: "advent-of-code-swift-utils")
+            .product(name: "AocUtils", package: "advent-of-code-swift-utils"),
+            .product(name: "Collections", package: "swift-collections")
         ]),
     ]
 )
