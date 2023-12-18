@@ -5,6 +5,7 @@ import Foundation
 guard let cookie = ProcessInfo.processInfo.environment["AOC_COOKIE"] else {
     fatalError("AOC_COOKIE env variable has to be specified")
 }
+//let cookie = ""
 
 let aoc2023 = getProblemSet(for: 2023, cookie: cookie)
 
@@ -75,6 +76,10 @@ day16.part2 = countEnergizedCellsGridSearch(_:)
 var day17 = aoc2023.problem(for: .day17)
 day17.part1 = minHeatLoss(_:)
 day17.part2 = minHeatLossUltra(_:)
+
+var day18 = aoc2023.problem(for: .day18)
+day18.part1 = countCubicMeters(_:)
+day18.part2 = countCubicMetersExtended(_:)
 
 // Prints all available solutions
 try await aoc2023.solve()
