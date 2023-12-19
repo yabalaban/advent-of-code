@@ -80,5 +80,9 @@ var day18 = aoc2023.problem(for: .day18)
 day18.part1 = countCubicMeters(_:)
 day18.part2 = countCubicMetersExtended(_:)
 
+var day19 = aoc2023.problem(for: .day19)
+day19.part1 = combineRatingNumbers(_:)
+day19.part2 = distinctCombinations(_:)
+
 // Prints all available solutions
 try await aoc2023.solve()
