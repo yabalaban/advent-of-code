@@ -1,3 +1,24 @@
+func gcd(_ a: Int, _ b: Int) -> Int {
+    var a = a
+    var b = b
+    while b != 0 {
+        (a, b) = (b, a % b)
+    }
+    return a
+}
+
+func lcm(_ a: Int, _ b: Int) -> Int {
+    a * b / gcd(a, b)
+}
+
+func lcm(_ n: [Int]) -> Int {
+    var res = lcm(n[0], n[1])
+    for i in 2..<n.count {
+        res = lcm(n[i], res)
+    }
+    return res
+}
+
 func countHops(_ input: String) -> Int {
     func solution(_ config: String) -> Int {
         let comp = config.components(separatedBy: "\n\n")
@@ -37,27 +58,6 @@ ZZZ = (ZZZ, ZZZ)
 
 func countHopsGhosts(_ input: String) -> Int {
     func solution(_ config: String) -> Int {
-        func gcd(_ a: Int, _ b: Int) -> Int {
-            var a = a
-            var b = b
-            while b != 0 {
-                (a, b) = (b, a % b)
-            }
-            return a
-        }
-        
-        func lcm(_ a: Int, _ b: Int) -> Int {
-            a * b / gcd(a, b)
-        }
-        
-        func lcm(_ n: [Int]) -> Int {
-            var res = lcm(n[0], n[1])
-            for i in 2..<n.count {
-                res = lcm(n[i], res)
-            }
-            return res
-        }
-        
         let comp = config.components(separatedBy: "\n\n")
         
         var map: [String: (String, String)] = [:]

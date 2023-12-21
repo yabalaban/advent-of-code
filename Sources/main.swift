@@ -84,5 +84,9 @@ var day19 = aoc2023.problem(for: .day19)
 day19.part1 = combineRatingNumbers(_:)
 day19.part2 = distinctCombinations(_:)
 
+var day20 = aoc2023.problem(for: .day20)
+day20.part1 = countPulses(_:)
+day20.part2 = countButtonTapsToRx(_:)
+
 // Prints all available solutions
 try await aoc2023.solve()
