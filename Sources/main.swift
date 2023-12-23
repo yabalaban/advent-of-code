@@ -88,5 +88,13 @@ var day20 = aoc2023.problem(for: .day20)
 day20.part1 = countPulses(_:)
 day20.part2 = countButtonTapsToRx(_:)
 
+var day21 = aoc2023.problem(for: .day21)
+day21.part1 = countGardenPlots(_:)
+day21.part2 = countGardenPlotsInfinitely(_:)
+
+var day22 = aoc2023.problem(for: .day22)
+day22.part1 = countDisintegrationCandidates(_:)
+day22.part2 = totalBrickToCollaps(_:)
+
 // Prints all available solutions
 try await aoc2023.solve()
