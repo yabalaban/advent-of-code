@@ -96,5 +96,13 @@ var day22 = aoc2023.problem(for: .day22)
 day22.part1 = countDisintegrationCandidates(_:)
 day22.part2 = totalBrickToCollaps(_:)
 
+var day23 = aoc2023.problem(for: .day23)
+day23.part1 = stepsOfLongestHike(_:)
+day23.part2 = stepsOfLongestHikeExtended(_:)
+
+var day24 = aoc2023.problem(for: .day24)
+day24.part1 = countIntersectionsInRange(_:)
+day24.part2 = b(_:)
+
 // Prints all available solutions
 try await aoc2023.solve()
