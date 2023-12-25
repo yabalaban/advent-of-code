@@ -102,7 +102,9 @@ day23.part2 = stepsOfLongestHikeExtended(_:)
 
 var day24 = aoc2023.problem(for: .day24)
 day24.part1 = countIntersectionsInRange(_:)
-day24.part2 = b(_:)
+
+var day25 = aoc2023.problem(for: .day25)
+day25.part1 = disconnectWires(_:)
 
 // Prints all available solutions
 try await aoc2023.solve()

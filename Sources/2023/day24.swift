@@ -139,7 +139,3 @@ func countIntersectionsInRange(_ input: String) -> Int {
     
     return solution(input)
 }
-
-func b(_ input: String) -> Int {
-    1
-}
